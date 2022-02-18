@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+	<link href="resources/css/alterarperfil.css" rel="stylesheet"
+		type="text/css" />
+
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</h:head>
+
+<ui:composition template="/tamplate.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<div class="content ">
+				
+				<h1 class="fs-1 title">Altere seus dados</h1>
+				<div class="row g-3">
+					<div class="col form-group">
+						<h:inputText value="#{alteraPerfilController.usu.nome}"
+							class="form-control input" pt:placeholder="Nome"
+							aria-label="First name" required="true"
+							requiredMessage="O nome deve ser informado." />
+					</div>
+					<div class="col form-group">
+						<h:inputText value="#{alteraPerfilController.usu.cpf}"
+							class="form-control input" pt:placeholder="cpf"
+							aria-label="First name" type="text" immediate="true"
+							required="true" requiredMessage="O cpf deve ser informado."
+							validatorMessage="Informe o cpf nos seguintes padrões: 111.111.111-11 ou 11111111111">
+							<f:validateRegex
+								pattern="([0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2})|([0-9]{11})" />
+							<f:validateLength minimum="1" maximum="11" /> >
+						</h:inputText>
+					</div>
+				</div>
+				<div class="row g-3">
+					<div class="col form-group">
+						<h:inputText value="#{alteraPerfilController.usu.email}"
+							class="form-control input" pt:placeholder="e-mail"
+							aria-label="First name"
+							validatorMessage="O email deve seguir o padrão : usuario@usu.com">
+							<f:validateRegex
+								pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+
+						</h:inputText>
+					</div>
+					<div class="col form-group">
+						<h:inputSecret value="#{alteraPerfilController.usu.senha}"
+							class="form-control input" pt:placeholder="Senha"
+							aria-label="First name" required="true"
+							requiredMessage="Informe sua senha novamente ou altere-lá." />
+					</div>
+				</div>
+				<div class="row g-3">
+					<div class="col form-group">
+						<h:inputText value="#{alteraPerfilController.usu.telefone.ddd}"
+							class="form-control input" pt:placeholder="DDD"
+							aria-label="First name" />
+					</div>
+					<div class="col form-group">
+						<h:inputText value="#{alteraPerfilController.usu.telefone.numero}"
+							class="form-control input" pt:placeholder="Número"
+							aria-label="First name" />
+					</div>
+				</div>
+				<div class="row g-3">
+					<div class="col form-group">
+
+						<h:selectOneMenu styleClass="form-control"
+							value="#{alteraPerfilController.usu.sexo}">
+
+							<f:selectItems var="obj"
+								value="#{alteraPerfilController.listaSexo}"
+								itemLabel="#{obj.desc}" />
+						</h:selectOneMenu>
+					</div>
+				</div>
+
+				<div>
+					<h:commandButton actionListener="#{alteraPerfilController.alterar}"
+						class="btn btn-warning botoes" value="Alterar" />
+				</div>
+			</div>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

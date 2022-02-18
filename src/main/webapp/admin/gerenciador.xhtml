@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+
+	<link href="../resources/css/usuario.css" rel="stylesheet" type="text/css" media="all"/>
+	<link href="../resources/css/gerenciador.css" rel="stylesheet"
+		type="text/css"  media="all"/>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous" />
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
+		rel="stylesheet" />
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+		crossorigin="anonymous" />
+
+
+	<link href="../resources/css/buscar.css" rel="stylesheet" type="text/css" />
+	<link href="../resources/css/datatable.css" rel="stylesheet"
+		type="text/css" />
+	
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+		crossorigin="anonymous" />
+
+
+</h:head>
+
+<h:body>
+	<h:form id="gerenciador">
+
+		<div class="page-wrapper chiller-theme toggled">
+			<a id="show-sidebar" class="btn btn-sm btn-dark" href="#"> <i
+				class="fas fa-bars"></i>
+			</a>
+			<nav id="sidebar" class="sidebar-wrapper">
+				<div class="sidebar-content">
+					<div class="sidebar-brand">
+						<h:commandLink value="Gerenciador"
+							action="gerenciador.xhtml?faces-redirect=true">
+							<f:ajax execute="@this" render="gerenciador" />
+						</h:commandLink>
+
+					</div>
+					<div class="sidebar-header">
+						<div class="user-pic">
+							<!--           <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" -->
+							<!--             alt="User picture"> -->
+						</div>
+						<div class="user-info">
+							<span class="user-name"><strong><h:outputLabel
+										value="#{templateController.usulogado.nome}" /></strong> </span> <span
+								class="user-role">Administrator</span> <span class="user-status">
+								<i class="fa fa-circle"></i> <span>Online</span>
+							</span>
+						</div>
+					</div>
+					<!-- sidebar-header  -->
+
+					<!-- sidebar-search  -->
+					<div class="sidebar-menu">
+						<ul>
+
+							<li class="header-menu"><span>Opcoes</span></li>
+							<li><h:commandLink
+									action="/admin/usuario.xhtml?faces-redirect=true">
+									<i class="fa fa-book"></i>
+									<span>Usuarios</span>
+									<span class="badge badge-pill badge-success notification">+9</span>
+								</h:commandLink></li>
+							<li><h:commandLink action="/admin/Carro.xhtml?faces-redirect=true">
+									<i class="fa fa-book"></i>
+									<span>Carros</span>
+									<span class="badge badge-pill badge-success notification">+9</span>
+								</h:commandLink></li>
+							<li><h:commandLink
+									action="/admin/fabricante.xhtml?faces-redirect=true">
+									<i class="fa fa-book"></i>
+									<span>Fabricantes</span>
+									<span class="badge badge-pill badge-success notification">+9</span>
+								</h:commandLink></li>
+
+
+						</ul>
+					</div>
+					<!-- sidebar-menu  -->
+				</div>
+				<!-- sidebar-content  -->
+				<div class="sidebar-footer">
+
+					<h:commandLink action="/tamplate.xhtml?faces-redirect=true">
+						<i class="fa fa-power-off"></i>
+					</h:commandLink>
+					
+				</div>
+			</nav>
+
+
+
+		</div>
+		</h:form>
+		<div id="teste">
+			<h:messages id="messages" errorStyle="color:red"
+				warnStyle="color:orange" infoStyle="color:green" globalOnly="false" />
+			<div align="center">
+				<ui:insert name="gerenciador">
+					<div>
+						<h:form>
+						
+							<div class="container h-100">
+								<div class="d-flex justify-content-center h-100">
+									<div class="searchbar">
+										<h:inputText value="#{gerenciadorController.filtro}"
+											class="search_input" type="text" name=""
+											pt:placeholder="Search..." />
+
+										<h:commandButton
+											actionListener="#{gerenciadorController.pesquisar}"
+											class="search_icon" image="/resources/images/search.svg">
+											<h:graphicImage value="/resources/images/search.svg"/>
+										</h:commandButton>
+									</div>
+								</div>
+							</div>
+							<div>
+								<div class="form-group col-md-4">
+
+									<h:selectOneMenu styleClass="form-control"
+										value="#{gerenciadorController.tipo}">
+										<f:selectItem itemValue="0" itemLabel="Pelo que deseja buscar" />
+										<f:selectItem itemValue="1" itemLabel="Usuarios" />
+										<f:selectItem itemValue="2" itemLabel="Carros" />
+										<f:selectItem itemValue="3" itemLabel="Fabricante " />
+									</h:selectOneMenu>
+								</div>
+							</div>
+						</h:form>
+					</div>
+
+
+
+				</ui:insert>
+			</div>
+		</div>
+
+	
+</h:body>
+</html>

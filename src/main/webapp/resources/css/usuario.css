@@ -1,0 +1,16 @@
+.content {
+	width: 500px;
+	    position: relative;
+    
+    top: 25em;
+}
+.title{
+	color: white;
+}
+input {
+	padding: 20px;
+}
+.botoes{
+	margin: 1em;
+}
+

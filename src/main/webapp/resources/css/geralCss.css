@@ -1,0 +1,15 @@
+.icons{
+	width: 40px;
+}
+.content-flex{
+	display: flex;
+}
+#position-login{
+/* 	margin-left: 1100px; */
+}
+#flex-nav-div{
+	display: flex;
+}
+.centraliza{
+	margin: 0 auto;
+}

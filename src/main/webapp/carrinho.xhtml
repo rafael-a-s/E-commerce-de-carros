@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+
+<h:head>
+
+
+
+
+	<link href="resources/css/carrinho.css" rel="stylesheet"
+		type="text/css" />
+
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+</h:head>
+
+<ui:composition template="/tamplate.xhtml">
+	<ui:define name="conteudo">
+		<div>
+			<h:form id="FormDataTable">
+				<h:dataTable id="dataTable" styleClass="container"
+					value="#{carrinhoController.listaItemVenda}" var="obj">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputLabel style="font-size: 1.2em;" value="#{obj.carro.nome}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Quantidade</f:facet>
+						<h:outputLabel class="color-w" value="#{obj.quantidade}">
+
+						</h:outputLabel>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Preço</f:facet>
+						<h:outputLabel class="color-w" value="#{obj.valor}">
+							<f:convertNumber locale="pt_BR" currencySymbol="R$"
+								type="currency" />
+						</h:outputLabel>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+						<h:commandButton style="color: black;" id="remover"
+							value="remover"
+							actionListener="#{carrinhoController.remover(obj)}"
+							onclick="location.reload(true)">
+							<f:ajax execute="FormDataTable" render="@form" />
+						</h:commandButton>
+					</h:column>
+
+
+				</h:dataTable>
+				<div style="width: 900px;">
+					<div style="float: right; display: grid; background: black;">
+						<h:outputLabel style="color:green; font-size:1.9em;"
+							value="Valor Total :R$ #{carrinhoController.valorTotal}0">
+							<f:convertNumber locale="pt_BR" currencySymbol="R$"
+								type="currency" />
+						</h:outputLabel>
+						<h:commandButton style="margin-top:10px;" value="Finalizar Compra" class="btn btn-primary"
+					actionListener="#{carrinhoController.finalizar}"
+					onclick="location.reload(true)">
+					<f:ajax execute=" FormDataTable" render="@form" />
+				</h:commandButton>
+					</div>
+				</div>
+				
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+	<link href="resources/css/buscar.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+		crossorigin="anonymous" />
+</h:head>
+
+<ui:composition template="/admin/gerenciador.xhtml">
+	<ui:define name="gerenciador">
+		<h:form>
+			<h:dataTable id="dataTable" width="100%"
+				value="#{tableFabricanteController.fablista}" var="obj"
+				styleClass="container">
+				<div class="table-card">
+
+					<h:column>
+						<f:facet name="header">ID</f:facet>
+						<h:outputLabel value="#{obj.idmarca}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">MARCA</f:facet>
+						<h:outputLabel value="#{obj.nome}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Ação</f:facet>
+						<h:panelGrid columns="2">
+							<h:commandButton class="btn btn-warning" value="Editar"
+								actionListener="#{tableFabricanteController.editar(obj.idmarca) }">
+
+							</h:commandButton>
+							<h:commandButton class="btn btn-danger" value="Excluir"
+								actionListener="#{tableFabricanteController.excluir(obj)}">
+							</h:commandButton>
+						</h:panelGrid>
+
+					</h:column>
+				</div>
+			</h:dataTable>
+</h:form>
+	</ui:define>
+</ui:composition>
+</html>

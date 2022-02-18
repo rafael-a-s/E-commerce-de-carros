@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+	<link href="resources/css/cadastro.css" rel="stylesheet"
+		type="text/css" />
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</h:head>
+
+<ui:composition template="/login.xhtml">
+	<ui:define name="conteudologin">
+
+		<div class="row">
+			<div class="col-md-offset-2 col-md-6">
+				<div>
+					<h:messages id="messages" errorStyle="color:red;margin:8px;"
+						warnStyle="color:yellow;margin:8px;"
+						infoStyle="color:green;margin:8px;" />
+				</div>
+				<h:form class="form-horizontal" id="form">
+					<div class="header">Registro</div>
+					<div class="form-content">
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<h:outputText class="control-label">
+									<i class="fa fa-user"></i>
+								</h:outputText>
+								<h:inputText value="#{cadastroController.usu.nome}"
+									class="form-control trasp " pt:placeholder="Nome" type="text"
+									required="true" requiredMessage="O nome deve ser informado." />
+							</div>
+							<div class="col-sm-6">
+								<h:outputText class="control-label">
+									<i class="fa fa-user"></i>
+								</h:outputText>
+								<h:inputText value="#{cadastroController.usu.cpf}"
+									class="form-control trasp" pt:placeholder="Cpf" type="text"
+									immediate="true" required="true"
+									requiredMessage="O cpf deve ser informado."
+									validatorMessage="Informe o cpf nos seguintes padrões: 111.111.111-11 ou 11111111111">
+									<f:validateRegex
+										pattern="([0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2})|([0-9]{11})" />
+									<f:validateLength minimum="1" maximum="11" /> >
+									
+									</h:inputText>
+							</div>
+							<div class="col-sm-6">
+								<h:outputText class="control-label">
+									<i class="fa fa-envelope-o"></i>
+								</h:outputText>
+								<h:inputText value="#{cadastroController.usu.email}"
+									class="form-control trasp" pt:placeholder="E-mail" type="Email"
+									validatorMessage="O email deve seguir o padrão : usuario@usu.com">
+									<f:validateRegex
+										pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+								</h:inputText>
+							</div>
+							<div class="col-sm-6">
+								<h:outputText class="control-label">
+									<i class="fa fa-user"></i>
+								</h:outputText>
+								<h:inputSecret value="#{cadastroController.usu.senha}"
+									class="form-control trasp" pt:placeholder="Senha" type="text"
+									required="true" requiredMessage="Informe sua senha." />
+							</div>
+						</div>
+						<div class="clearfix"></div>
+
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<h:outputText class="control-label">
+									<i class="fa fa-user"></i>
+								</h:outputText>
+								<h:inputText value="#{cadastroController.usu.telefone.ddd}"
+									class="form-control trasp" pt:placeholder="DDD" type="text" />
+							</div>
+
+							<div class="col-sm-6">
+								<h:outputText class="control-label">
+									<i class="fa fa-user"></i>
+								</h:outputText>
+								<h:inputText value="#{cadastroController.usu.telefone.numero}"
+									class="form-control trasp" id="exampleInputName2"
+									pt:placeholder="Telefone" type="text" />
+							</div>
+						</div>
+						<div class="clearfix"></div>
+
+
+						<div class="form-group">
+							<div class="col-sm-12">
+
+								<h:selectOneMenu styleClass="form-control"
+									value="#{cadastroController.usu.sexo}">
+
+									<f:selectItems var="obj"
+										value="#{cadastroController.listaSexo}"
+										itemLabel="#{obj.desc}" />
+								</h:selectOneMenu>
+							</div>
+						</div>
+						<div class="clearfix">
+							<h:commandButton value="Limpar" type="submit"
+								class="btn btn-default btnmk">
+								<f:ajax execute="@this"  render="form"/>
+							</h:commandButton>
+							<h:commandButton actionListener="#{cadastroController.registrar}"
+								value="Registrar-se" type="submit" class="btn btn-default btnmk" />
+						</div>
+					</div>
+				</h:form>
+
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+	<link href="resources/css/cadastro.css" rel="stylesheet"
+		type="text/css" />
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</h:head>
+
+<ui:composition template="/admin/gerenciador.xhtml">
+	<ui:define name="gerenciador">
+	<h:form id="formfab">
+		<div class="content ">
+		<h:messages id="msg" errorStyle="color:red"
+				warnStyle="color:orange" infoStyle="color:green" globalOnly="false" />
+			<h1 class="fs-1 title">Cadastro de Marcas</h1>
+			<div class="row g-3">
+				<div class="col form-group">
+					<h:inputText value="#{fabricanteController.fab.nome}"
+						class="form-control input" pt:placeholder="Nome do Fabricante"
+						required="true" requiredMessage="O nome da fabricante deve ser informado."  />
+				</div>
+				
+			
+			<div>
+				<h:commandButton actionListener="#{fabricanteController.registrar}" class="btn btn-success botoes" value="Incluir" rendered="#{fabricanteController.fab.idmarca == null}" >
+					<f:ajax execute="formfab" render="formfab buttons" />
+				</h:commandButton>
+				<h:commandButton actionListener="#{fabricanteController.alterar}" class="btn btn-warning botoes" value="Alterar" rendered="#{fabricanteController.fab.idmarca != null}" >
+				<f:ajax execute="formfab" render="formfab buttons" />
+				</h:commandButton>
+				<h:commandButton actionListener="#{fabricanteController.excluir}" class="btn btn-danger botoes" value="Excluir" rendered="#{fabricanteController.fab.idmarca != null}" >
+				<f:ajax execute="formfab" render="formfab buttons" />
+				</h:commandButton>
+
+			
+				<h:commandButton actionListener="#{fabricanteController.limpar}" class="btn btn-primary botoes" value="Limpar" >
+				<f:ajax execute="formfab" render="formfab buttons"/>
+				</h:commandButton>
+				
+			</div>
+		</div>
+</div>
+</h:form>
+	</ui:define>
+</ui:composition>
+</html>

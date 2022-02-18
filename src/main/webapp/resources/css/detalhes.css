@@ -1,0 +1,11 @@
+.itens label {
+	display: grid;
+	color: white;
+	padding-bottom: 30px;
+	align-items: center;
+	text-align: center;
+	padding-top: 0px;
+	border: 2 px solid white;
+	width: 400 px;
+	margin-bottom: 1 em;
+}

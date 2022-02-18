@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+
+<h:head>
+
+
+
+	<link href="resources/css/cadastro.css" rel="stylesheet"
+		type="text/css" />
+	<link href="resources/css/login.css" rel="stylesheet" type="text/css" />
+
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+</h:head>
+
+<ui:composition template="/tamplate.xhtml">
+	<ui:define name="conteudo">
+		<div>
+
+
+
+			<div class="itens">
+				<h:column>
+					<h:outputLabel
+						value="CLIENTE : #{detalhesController.venda.usuario.nome}" />
+					<h:outputLabel
+						value="DATA DA VENDA : #{detalhesController.venda.data}" />
+					<h:outputLabel
+						value="TOTAL DA VENDA : R$ #{detalhesController.venda.totalVenda}0" >
+						<f:convertNumber  locale="pt_BR" currencySymbol="R$" type="currency"/>
+						</h:outputLabel>
+
+
+				</h:column>
+			</div>
+			<div>
+		
+				<h:form id="FormDataTable">
+					<h:dataTable id="dataTable" styleClass="container" style="width:800px;"
+						value="#{detalhesController.venda.listaItemVenda}" var="obj">
+						<f:facet  name="header"><p style="text-align: center; color:white; font-size:1.5em;">Itens Vendidos</p></f:facet>
+						<h:column>
+							<f:facet name="header">Nome</f:facet>
+							<h:outputLabel class="color-w" value="#{obj.carro.nome}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Valor</f:facet>
+							<h:outputLabel style="color:green;" value="#{obj.carro.preco}">
+								<f:convertNumber  locale="pt_BR" currencySymbol="R$" type="currency"/>
+							</h:outputLabel>
+						</h:column>
+
+
+
+					</h:dataTable>
+					<h:commandButton value="Voltar" class="btn btn-primary"
+						onclick="history.go(-1); return false;">
+					
+					</h:commandButton>
+				</h:form>
+			</div>
+			</div>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+	<link href="resources/css/cadastro.css" rel="stylesheet"
+		type="text/css" />
+	<link href="resources/css/login.css" rel="stylesheet" type="text/css" />
+
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</h:head>
+
+<h:body>
+	<div class="sidenav">
+		<div class="login-main-text">
+			<h2>
+				Página <br /> de Login
+			</h2>
+			<h:form>
+			<p>Faça <h:commandLink action="login.xhtml?faces-redirect=true"> login</h:commandLink> ou <h:commandLink action="cadastro.xhtml?faces-redirect=true">registre-se</h:commandLink> aqui para acessar.</p>
+			</h:form>
+		</div>
+		
+		<div>
+			<h:graphicImage value="/resources/images/illustration.svg" />
+		</div>
+	</div>
+	
+	<div class="main" >
+	<ui:insert name="conteudologin">
+		<div class="col-md-6 col-sm-12" >
+			
+				<div class="login-form">
+					<h:form>
+						<div class="form-group">
+							<h:outputText value="Email" />
+							<h:inputText value="#{loginController.usu.email}" type="text" class="form-control"
+								pt:placeholder="Entre com seu email" 
+							 	title="Informe seu email para entrar no sistema."
+	                			autofocus="autofocus"/>
+								
+								
+						</div>
+						<div class="form-group">
+							<h:outputText value="Senha" />
+							<h:inputSecret value="#{loginController.usu.senha}" type="password" class="form-control"
+								pt:placeholder="Senha" />
+						</div>
+						<h:commandButton action="#{loginController.logar}" value="Login" type="submit" class="btn btn-black" />
+						
+							
+							<div>
+							<h:messages id="messages" errorStyle="color:red;margin:8px;"
+								warnStyle="color:yellow;margin:8px;"
+								infoStyle="color:green;margin:8px;" />
+						</div>
+					</h:form>
+				</div>
+			
+		</div>
+		</ui:insert>
+	</div>
+		
+</h:body>
+</html>

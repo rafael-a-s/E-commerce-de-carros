@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+   
+    
+   <h:head>
+
+
+        
+    
+
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    </h:head>
+
+<ui:composition template="/tamplate.xhtml">
+<ui:define name="conteudo">
+<div>
+        <h:form id= "FormDataTable">
+         <h:dataTable id="dataTable" 
+								styleClass="container"
+								value="#{historicoController.vendasCarros}" 
+							 	var="obj">
+						<h:column>
+							<f:facet name="header">Nome</f:facet>
+							<h:outputLabel  value="#{obj.usuario.nome}" />
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">Data</f:facet>
+							<h:outputLabel class="color-w" value="#{obj.data}">
+							
+							</h:outputLabel>
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">Total de cada venda</f:facet>
+							<h:outputLabel class="color-w" value="#{obj.totalVenda}">
+								<f:convertNumber  locale="pt_BR" currencySymbol="R$" type="currency"/>
+							</h:outputLabel>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Ação</f:facet>
+							<h:commandButton style="color: black; border-radius: 10px;" value="Detalhes ..." action="#{historicoController.detalhes(obj)}">
+								<f:ajax execute="@this" render="@none"/>
+							</h:commandButton>
+						</h:column>		
+	                	</h:dataTable>
+                        
+                   </h:form>
+                   </div>
+</ui:define>
+</ui:composition>
+ </html>

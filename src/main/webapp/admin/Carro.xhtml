@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+	<link href="resources/css/cadastro.css" rel="stylesheet"
+		type="text/css" />
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</h:head>
+
+<ui:composition template="/admin/gerenciador.xhtml">
+	<ui:define name="gerenciador">
+	<h:form id="formcarro">
+		<div class="content ">
+		<h:messages id="msg" errorStyle="color:red"
+				warnStyle="color:orange" infoStyle="color:green" globalOnly="false" />
+			<h1 class="fs-1 title">Cadastro de Carros</h1>
+			<div class="row g-3">
+				<div class="col form-group">
+					<h:inputText value="#{carroController.carro.nome}"
+						class="form-control input" pt:placeholder="Nome do Veículo" type="text"
+						required="true" requiredMessage="O Nome do carro deve ser informado."  />
+				</div>
+				<div class="col form-group">
+					<h:inputText value="#{carroController.carro.anolancamento}"
+						class="form-control input" pt:placeholder="Ano de Lançamento"
+						required="true" requiredMessage="O Ano de lançamento deve ser informado."  />
+				</div>
+			</div>
+			<div class="row g-3">
+				<div class="col form-group">
+					<h:inputText value="#{carroController.carro.descricao}"
+						class="form-control input" pt:placeholder="Descrição"
+						required="true" requiredMessage="A descrição do carro deve ser informada."  />
+				</div>
+				<div class="col">
+					<h:inputText value="#{carroController.carro.preco}"
+						class="form-control input" pt:placeholder="Preço"
+						required="true" requiredMessage="O nome Preço do carro."  />
+				</div>
+			</div>
+			
+			<div class="row g-3">
+				<div class="col form-group">
+					
+					<h:selectOneMenu styleClass="form-control"
+						value="#{carroController.carro.cor}">
+
+						<f:selectItems var="obj" value="#{carroController.listaCor}"
+							itemLabel="#{obj.desc}" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+			<div class="row g-3">
+				<div class="col form-group">
+					
+					<h:selectOneMenu styleClass="form-control"
+						value="#{carroController.carro.marca.idmarca}">
+
+						<f:selectItems value="#{carroController.listaMarca}"
+							var="obj"
+							itemValue="#{obj.idmarca}"
+							itemLabel="#{obj.nome}" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+			
+			<div>
+				<h:commandButton actionListener="#{carroController.registrar}" class="btn btn-success botoes" value="Incluir" 
+				rendered="#{carroController.carro.id == null}">
+					<f:ajax execute="formcarro" render="formcarro buttons" />
+				</h:commandButton>
+				<h:commandButton actionListener="#{carroController.alterar}" class="btn btn-warning botoes" value="Alterar"
+					rendered="#{carroController.carro.id != null}">
+					<f:ajax execute="formcarro" render="formcarro buttons" />
+				</h:commandButton>
+				<h:commandButton actionListener="#{carroController.excluir}" class="btn btn-danger botoes" value="Excluir" 
+					rendered="#{carroController.carro.id != null}">
+					<f:ajax execute="@this" render="formcarro buttons" />
+				</h:commandButton>
+				<h:commandButton actionListener="#{carroController.limpar}" class="btn btn-primary botoes" value="Limpar" >
+					<f:ajax execute="@this" render="formcarro buttons" />
+				</h:commandButton>
+			</div>
+		</div>
+</h:form>
+	</ui:define>
+</ui:composition>
+</html>
